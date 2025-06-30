@@ -6,7 +6,7 @@
  */
 if(!defined('DOKU_INC')) die();
 if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
-@require_once(DOKU_PLUGIN.'syntax.php');
+// @require_once(DOKU_PLUGIN.'syntax.php');
 /**
  * Yet another sytax component for Tab plugin,
  * provided by satoshi.sahara@gmail.com

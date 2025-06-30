@@ -2,6 +2,8 @@
 // must be run within Dokuwiki
 if (!defined('DOKU_INC')) die();
 
+use dokuwiki\File\PageResolver; // Add this line
+
 class helper_plugin_tabinclude extends DokuWiki_Plugin {
     var $sort = ''; // sort key
     /**
@@ -100,7 +102,10 @@ class helper_plugin_tabinclude extends DokuWiki_Plugin {
             }
 
             // Build tab title
-            resolve_pageid(getNS($ID),$page,$exists);
+            // Corrected line: Use PageResolver instead of resolve_pageid()
+            $resolver = new PageResolver(getNS($ID));
+            $page = $resolver->resolveId($page);
+
             if($title==''){
                 // Show first heading as tab name ?
                 if($this->getConf('use_first_heading')){
@@ -174,7 +179,7 @@ class helper_plugin_tabinclude extends DokuWiki_Plugin {
 
         global $conf;
         if($conf['allowdebug']==1){
-            $renderer->doc.="<!-- \n".print_r(array($tabs,$init_page_idx,$class),true)."\n -->";
+            $renderer->doc.="";
         }
 
         return true;
@@ -221,7 +226,7 @@ class helper_plugin_tabinclude extends DokuWiki_Plugin {
 
         global $conf;
         if($conf['allowdebug']==1){
-            $renderer->doc.="<!-- \n".print_r(array($tabs,$init_page_idx,$class),true)."\n -->";
+            $renderer->doc.="";
         }
 
         return true;
@@ -277,7 +282,7 @@ class helper_plugin_tabinclude extends DokuWiki_Plugin {
 
         global $conf;
         if($conf['allowdebug']==1){
-            $renderer->doc.="<!-- \n".print_r(array($tabs,$init_page_idx,$class),true)."\n -->";
+            $renderer->doc.="";
         }
 
         return true;
@@ -320,7 +325,7 @@ class helper_plugin_tabinclude extends DokuWiki_Plugin {
 
         global $conf;
         if($conf['allowdebug']==1){
-            $renderer->doc.="<!-- \n".print_r(array($tabs,$init_page_idx,$class),true)."\n -->";
+            $renderer->doc.="";
         }
 
         return true;
